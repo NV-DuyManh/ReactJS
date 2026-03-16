@@ -15,40 +15,31 @@ function Todolist(props) {
             </div>
 
             <div className="bang flex justify-center mt-6 px-10">
-                <table className="w-full border-separate border-spacing-y-2">
-                    <thead>
-                        <tr className="text-gray-600">
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th className="text-right">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="bg-black text-white">
-                            <td className="p-3 text-center rounded-l-md w-16">1</td>
-                            <td className="p-3 text-center">Học React</td>
-                            <td className="p-3 text-right rounded-r-md">
-                                <button className="bg-blue-500 px-3 py-1 rounded mr-2 text-sm">Edit</button>
-                                <button className="bg-red-600 px-3 py-1 rounded text-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr className="bg-black text-white">
-                            <td className="p-3 text-center rounded-l-md w-16">2</td>
-                            <td className="p-3 text-center">Làm Table</td>
-                            <td className="p-3 text-right rounded-r-md">
-                                <button className="bg-blue-500 px-3 py-1 rounded mr-2 text-sm">Edit</button>
-                                <button className="bg-red-600 px-3 py-1 rounded text-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr className="bg-black text-white">
-                            <td className="p-3 text-center rounded-l-md w-16">3</td>
-                            <td className="p-3 text-center">Ăn cơm</td>
-                            <td className="p-3 text-right rounded-r-md">
-                                <button className="bg-blue-500 px-3 py-1 rounded mr-2 text-sm">Edit</button>
-                                <button className="bg-red-600 px-3 py-1 rounded text-sm">Delete</button>
-                            </td>
-                        </tr>
-                    </tbody>
+                <table className="w-full table-fixed border-separate border-spacing-y-2">
+                    <tr className="bg-black text-white">
+                        <td className="p-3 text-left rounded-l-md">1</td>
+                        <td className="p-3 text-center">Gà Rán</td>
+                        <td className="p-3 text-right rounded-r-md">
+                            <button className="bg-blue-500 px-3 py-1 rounded mr-2">Edit</button>
+                            <button className="bg-red-600 px-3 py-1 rounded">Delete</button>
+                        </td>
+                    </tr>
+                    <tr className="bg-black text-white">
+                        <td className="p-3 text-left rounded-l-md">2</td>
+                        <td className="p-3 text-center">Khoai Tây Chiên</td>
+                        <td className="p-3 text-right rounded-r-md">
+                            <button className="bg-blue-500 px-3 py-1 rounded mr-2">Edit</button>
+                            <button className="bg-red-600 px-3 py-1 rounded">Delete</button>
+                        </td>
+                    </tr>
+                    <tr className="bg-black text-white">
+                        <td className="p-3 text-left rounded-l-md">3</td>
+                        <td className="p-3 text-center">Nước Ngọt</td>
+                        <td className="p-3 text-right rounded-r-md">
+                            <button className="bg-blue-500 px-3 py-1 rounded mr-2">Edit</button>
+                            <button className="bg-red-600 px-3 py-1 rounded">Delete</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
