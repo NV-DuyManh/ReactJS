@@ -2,55 +2,50 @@ import React from 'react';
 
 function Footer(props) {
     return (
-        <div className="bg-dark text-white p-5 mt-5">
-            <div className="container-fluid">
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-5 ">
-                    <div className="col mb-4">
-                        <h5 className="fw-bold mb-3">About</h5>
-                        <ul className="list-unstyled">
-                            <li className="mb-2 text-secondary">Our story</li>
-                            <li className="mb-2 text-secondary">Awards</li>
-                            <li className="mb-2 text-secondary">Our Team</li>
-                            <li className="mb-2 text-secondary">Career</li>
-                        </ul>
+        <div className="w-full p-10 mx-auto bg-gray-900 text-white mt-10">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div className="mb-4">
+                    <h5 className="font-bold mb-3 text-lg">About</h5>
+                    <ul className="list-none">
+                        <li className="mb-2 text-gray-400">Our story</li>
+                        <li className="mb-2 text-gray-400">Awards</li>
+                        <li className="mb-2 text-gray-400">Our Team</li>
+                        <li className="mb-2 text-gray-400">Career</li>
+                    </ul>
+                </div>
+                <div className="mb-4">
+                    <h5 className="font-bold mb-3 text-lg">About</h5>
+                    <ul className="list-none">
+                        <li className="mb-2 text-gray-400">Our story</li>
+                        <li className="mb-2 text-gray-400">Awards</li>
+                        <li className="mb-2 text-gray-400">Our Team</li>
+                        <li className="mb-2 text-gray-400">Career</li>
+                    </ul>
+                </div>
+                <div className="mb-4">
+                    <h5 className="font-bold mb-3 text-lg">Company</h5>
+                    <ul className="list-none">
+                        <li className="mb-2 text-gray-400">Our services</li>
+                        <li className="mb-2 text-gray-400">Clients</li>
+                        <li className="mb-2 text-gray-400">Contact</li>
+                        <li className="mb-2 text-gray-400">Press</li>
+                    </ul>
+                </div>
+                <div className="mb-4">
+                    <h5 className="font-bold mb-3 text-lg">Resources</h5>
+                    <ul className="list-none">
+                        <li className="mb-2 text-gray-400">Blog</li>
+                        <li className="mb-2 text-gray-400">Newsletter</li>
+                        <li className="mb-2 text-gray-400">Privacy Policy</li>
+                    </ul>
+                </div>
+                <div className="mb-4 col-span-2 md:col-span-2 lg:col-span-2">
+                    <h5 className="font-bold mb-3 text-lg ">Subscribe</h5>
+                    <div className="flex mb-2 gap-2 ">
+                        <input type="email" className="w-full p-2 text-black focus:outline-none rounded-lg" placeholder="Enter email address" />
+                        <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full " type="button">Subscribe</button>
                     </div>
-                    <div className="col mb-4">
-                        <h5 className="fw-bold mb-3">About</h5>
-                        <ul className="list-unstyled">
-                            <li className="mb-2 text-secondary">Our story</li>
-                            <li className="mb-2 text-secondary">Awards</li>
-                            <li className="mb-2 text-secondary">Our Team</li>
-                            <li className="mb-2 text-secondary">Career</li>
-                        </ul>
-                    </div>
-                    <div className="col mb-4">
-                        <h5 className="fw-bold mb-3">Company</h5>
-                        <ul className="list-unstyled">
-                            <li className="mb-2 text-secondary">Our services</li>
-                            <li className="mb-2 text-secondary">Clients</li>
-                            <li className="mb-2 text-secondary">Contact</li>
-                            <li className="mb-2 text-secondary">Press</li>
-                        </ul>
-                    </div>
-
-                    <div className="col mb-4">
-                        <h5 className="fw-bold mb-3">Resources</h5>
-                        <ul className="list-unstyled">
-                            <li className="mb-2 text-secondary">Blog</li>
-                            <li className="mb-2 text-secondary">Newsletter</li>
-                            <li className="mb-2 text-secondary">Privacy Policy</li>
-                        </ul>
-                    </div>
-
-                    <div className="col mb-4">
-                        <h5 className="fw-bold mb-3">Subscribe</h5>
-                        <div className="input-group mb-2">
-                            <input type="email" className="form-control rounded-0 p-2 " placeholder="Enter email address" />
-                            <button className="btn btn-primary rounded-0 px-4 " type="button">Subscribe</button>
-                        </div>
-                        <p className="text-secondary">Get digital marketing updates in your mailbox</p>
-                    </div>
-
+                    <p className="text-gray-400 text-sm">Get digital marketing updates in your mailbox</p>
                 </div>
             </div>
         </div>

@@ -1,36 +1,20 @@
 import React from 'react';
+import { LIST_PRODUCTS } from '../../utils/contants';
 
 function Main(props) {
     return (
-        <div className="container-fluid p-5">
-            <div className="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1 g-3">
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
-                <div className="col">
-                    <img className='w-full h-auto object-cover rounded' src="https://images2.thanhnien.vn/528068263637045248/2024/1/25/e093e9cfc9027d6a142358d24d2ee350-65a11ac2af785880-17061562929701875684912.jpg" alt="" />
-                </div>
+        <div className='w-full p-8 mx-auto'>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {LIST_PRODUCTS.map((p, index) => (
+                    <div className='flex relative flex-col justify-center items-center gap-3 border-2 border-orange-700 rounded-lg p-4 shadow-lg  hover:scale-105 duration-200 hover:border-green-700 '>
+                        <p className='absolute top-2 left-4 bg-red-500 w-8 h-8 text-center items-center text-lg flex justify-center text-white font-bold rounded-full'>{p.id}</p>
+                        <img src={p.image} className='w-full h-48 object-contain' alt="" />
+                        <p className='font-bold text-lg'>{p.name}</p>
+                        <p className='text-xl font-bold text-purple-700'>{p.price} $</p>
+                    </div>
+                ))}
             </div>
         </div>
-
     );
 }
 
