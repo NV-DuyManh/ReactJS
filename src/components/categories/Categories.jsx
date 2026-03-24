@@ -7,13 +7,13 @@ const inner = { name: "", description: "" };
 function Categories(props) {
     const [category, setCategory] = useState(inner);
     const [open, setOpen] = useState(false);
-    const [error,setError] = useState(inner);
+    const [error, setError] = useState(inner);
     const handleOpen = () => {
         setOpen(true);
         setCategory(inner);
     };
     const handleClose = () => setOpen(false);
-    const [update,setUpdate] = useState(false);
+    const [update, setUpdate] = useState(false);
     // co 3 dang 
     // 1. chay lien tuc
     // 2. chay 1 lan 
@@ -25,22 +25,22 @@ function Categories(props) {
     const onchangInput = (e) => {
         setCategory({ ...category, [e.target.name]: e.target.value })
     }
-     const validation = () => {
-        const newError = {} ;
-        newError.name = category.name ? "" : "Please inter your name" ;
-        newError.description = category.description ? "" : "Please inter your description" ;
+    const validation = () => {
+        const newError = {};
+        newError.name = category.name ? "" : "Please inter your name";
+        newError.description = category.description ? "" : "Please inter your description";
         setError(newError);
         return Object.values(newError).some(e => e != ""); // true co loi
-     } 
+    }
 
-   const addCategory = async () => {
-     if(validation()) {
-         return;
-     }
-       await axios.post("https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/categories", category);
-       handleClose();
-       setUpdate(!update);
-   }
+    const addCategory = async () => {
+        if (validation()) {
+            return;
+        }
+        await axios.post("https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/categories", category);
+        handleClose();
+        setUpdate(!update);
+    }
 
 
     return (

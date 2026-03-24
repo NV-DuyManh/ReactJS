@@ -1,12 +1,16 @@
 import React from 'react';
+import Search from '../header/Search';
+import TableProduct from './TableProduct';
+import ModalProduct from './ModalProduct';
 
 function Products(props) {
     return (
-        <>
-             <h1>dd</h1>
-        <h2>xax</h2>
-        </>
-   
+        <div>
+            <Search />
+            <TableProduct />
+            <ModalProduct />
+        </div>
+
     );
 }
 

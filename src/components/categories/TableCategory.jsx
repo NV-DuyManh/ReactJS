@@ -30,9 +30,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function TableCategory({update}) {
+function TableCategory({ update }) {
     const [categories, setCategories] = useState([]);
-    
+
     useEffect(() => {
         getData()
     }, [update]);
@@ -51,15 +51,12 @@ function TableCategory({update}) {
                             <StyledTableCell>Name</StyledTableCell>
                             <StyledTableCell>Description</StyledTableCell>
                             <StyledTableCell align="right">Action</StyledTableCell>
-
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {categories.map((row, index) => (
                             <StyledTableRow key={index}>
-                                <StyledTableCell component="th" scope="row">
-                                    {index + 1}
-                                </StyledTableCell>
+                                <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
                                 <StyledTableCell>{row.name}</StyledTableCell>
                                 <StyledTableCell>{row.description}</StyledTableCell>
                                 <StyledTableCell align="right">
