@@ -12,8 +12,6 @@ const style = {
     p: 4,
 };
 function ModalCategory({ open, handleClose, category, onchangInput, addCategory, error }) {
-
-
     return (
         <div>
             <Modal
