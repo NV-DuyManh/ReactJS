@@ -5,11 +5,13 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper'; import React, { useEffect, useState } from 'react';
+import Paper from '@mui/material/Paper'; import React, { useContext, useEffect, useState } from 'react';
 import Categories from './Categories';
 import axios from 'axios';
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
+import Modal_Delete from '../header/Modal_Delete';
+import { CategoriesContext } from '../contexts/CategoryProvider';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: theme.palette.common.black,
@@ -30,16 +32,31 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function TableCategory({ update }) {
-    const [categories, setCategories] = useState([]);
+function TableCategory({ setCategory, handleOpen }) {
+    const [open, setOpen] = React.useState(false);
+    const [delelteCategory, setdelelteCategory] = useState(null);
+    const { categories, handleUpdate } = useContext(CategoriesContext);
+    // ham mo modal xoa => id 
+    const handleClickOpen = (id) => {
+        setdelelteCategory(id);
+        setOpen(true);
+    };
 
-    useEffect(() => {
-        getData()
-    }, [update]);
+    // ham xoa  await axios.delete(`https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/categories/{bien xoa}`);
+    const xoaCate = async () => {
+        await axios.delete(`https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/categories/${delelteCategory}`);
+        handleClose();
+        handleUpdate();
+    }
+    // ham dong modal 
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-    const getData = async () => {
-        const reponse = await axios.get("https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/categories");
-        setCategories(reponse.data);
+    // ham handleEdit => (row) => handleOpen => setCategory(row)
+    const handleEdit = (row) => {
+        handleOpen();
+        setCategory(row);
     }
     return (
         <div className='p-5'>
@@ -60,14 +77,16 @@ function TableCategory({ update }) {
                                 <StyledTableCell>{row.name}</StyledTableCell>
                                 <StyledTableCell>{row.description}</StyledTableCell>
                                 <StyledTableCell align="right">
-                                    <button className="bg-blue-500  text-white px-3 py-1 rounded mr-2"><CiEdit /></button>
-                                    <button className="bg-red-600 px-3  text-white py-1 rounded"><RiDeleteBin6Fill /></button>
+                                    <button onClick={() => handleEdit(row)} className="bg-blue-500  text-white px-3 py-1 rounded mr-2"><CiEdit /></button>
+                                    <button onClick={() => handleClickOpen(row.id)} className="bg-red-600 px-3  text-white py-1 rounded"><RiDeleteBin6Fill /></button>
                                 </StyledTableCell>
                             </StyledTableRow>
                         ))}
                     </TableBody>
                 </Table>
             </TableContainer>
+            <Modal_Delete open={open} handleClose={handleClose} handleDeleted={xoaCate} />
+
         </div>
     );
 }

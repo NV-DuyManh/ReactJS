@@ -1,5 +1,6 @@
-import React from 'react';
-import { Box, Button, DialogActions, Modal, TextField, Typography } from '@mui/material';
+import React, { useContext } from 'react';
+import { Autocomplete, Box, Button, DialogActions, Modal, TextField, Typography } from '@mui/material';
+import { CategoriesContext } from '../contexts/CategoryProvider';
 
 const style = {
     position: 'absolute',
@@ -11,11 +12,12 @@ const style = {
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
-    maxHeight: '90vh', 
+    maxHeight: '90vh',
     overflowY: 'auto'
 };
 
 function ModalProduct({ open, handleClose, product, onchangInput, addProduct, error }) {
+    const { categories } = useContext(CategoriesContext);
     return (
         <div>
             <Modal
@@ -60,15 +62,13 @@ function ModalProduct({ open, handleClose, product, onchangInput, addProduct, er
                             helperText={error.image}
                             sx={{ mt: 2 }}
                         />
-                        <TextField
-                            label="Category ID"
+                        <Autocomplete
+                            disablePortal
+                            options={categories}
+                            getOptionLabel={(option) => option.name}
                             fullWidth
-                            name='categoryID'
-                            value={product.categoryID}
-                            onChange={onchangInput}
-                            error={!!error.categoryID}
-                            helperText={error.categoryID}
                             sx={{ mt: 2 }}
+                            renderInput={(params) => <TextField {...params} label="Movie" />}
                         />
                         <TextField
                             label="Description"

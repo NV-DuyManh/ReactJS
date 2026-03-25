@@ -4,6 +4,7 @@ import TableProduct from './TableProduct';
 import ModalProduct from './ModalProduct';
 import axios from 'axios';
 
+
 const inner = { name: "", price: "", image: "", categoryID: "", description: "" };
 
 function Products(props) {
@@ -45,7 +46,7 @@ function Products(props) {
 
     return (
         <div>
-            <Search handleOpen={handleOpen} />
+            <Search handleOpen={handleOpen} type={"PRODUCTS"} name={"PRODUCT"}/>
             <TableProduct update={update} />
             <ModalProduct 
                 error={error} 

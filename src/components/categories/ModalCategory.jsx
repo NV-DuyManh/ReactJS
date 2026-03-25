@@ -1,5 +1,4 @@
 import { Box, Button, DialogActions, Modal, TextField, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -22,7 +21,7 @@ function ModalCategory({ open, handleClose, category, onchangInput, addCategory,
             >
                 <Box sx={style}>
                     <Typography id="modal-modal-title" variant="h6" component="h2">
-                        ADD CAREGORY
+                        {!category.id ? "ADD CATEGORY" : "EDIT CATEGORY"}
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         <TextField
@@ -49,7 +48,9 @@ function ModalCategory({ open, handleClose, category, onchangInput, addCategory,
                             helperText={error.description}
                         />
                         <DialogActions>
-                            <Button onClick={addCategory} variant="contained" sx={{ mt: 2 }}>Add Category</Button>
+                            <Button onClick={addCategory} variant="contained" sx={{ mt: 2 }}>
+                                {!category.id ? "ADD" : "EDIT"}
+                            </Button>
                         </DialogActions>
                     </Typography>
                 </Box>
