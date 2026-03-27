@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Search from '../header/Search';
 import TableProduct from './TableProduct';
 import ModalProduct from './ModalProduct';
 import axios from 'axios';
+import { ProductContext } from '../contexts/ProductProvider';
 
 
 const inner = { name: "", price: "", image: "", categoryID: "", description: "" };
@@ -11,7 +12,7 @@ function Products(props) {
     const [product, setProduct] = useState(inner);
     const [open, setOpen] = useState(false);
     const [error, setError] = useState(inner);
-    const [update, setUpdate] = useState(false);
+    const { handleUpdate } = useContext(ProductContext);
 
     const handleOpen = () => {
         setOpen(true);
@@ -39,22 +40,23 @@ function Products(props) {
         if (validation()) {
             return;
         }
-        await axios.post("https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/Product", product);
+        !product.id ? await axios.post("https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/Product", product)
+            : await axios.put(`https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/Product/${product.id}`, product);
         handleClose();
-        setUpdate(!update);
+        handleUpdate();
     }
 
     return (
         <div>
-            <Search handleOpen={handleOpen} type={"PRODUCTS"} name={"PRODUCT"}/>
-            <TableProduct update={update} />
-            <ModalProduct 
-                error={error} 
-                addProduct={addProduct} 
-                onchangInput={onchangInput} 
-                product={product} 
-                open={open} 
-                handleClose={handleClose} 
+            <Search handleOpen={handleOpen} type={"PRODUCTS"} name={"PRODUCT"} />
+            <TableProduct setProduct={setProduct} handleOpen={handleOpen} />
+            <ModalProduct
+                error={error}
+                addProduct={addProduct}
+                onchangInput={onchangInput}
+                product={product}
+                open={open}
+                handleClose={handleClose}
             />
         </div>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,6 +11,7 @@ import axios from 'axios';
 import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import Modal_Delete from '../header/Modal_Delete';
+import { ProductContext } from '../contexts/ProductProvider';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -32,19 +33,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function TableProduct({ update }) {
-    const [products, setProducts] = useState([]);
+function TableProduct({ setProduct, handleOpen }) {
     const [open, setOpen] = React.useState(false);
     const [deleteProduct, setdelProduct] = useState(null);
+    const {products, handleUpdate} =useContext(ProductContext);
 
-    useEffect(() => {
-        getData();
-    }, [update]);
-
-    const getData = async () => {
-        const reponsive = await axios.get("https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/Product");
-        setProducts(reponsive.data);
-    }
     const handleClickOpen = (id) => {
         setdelProduct(id);
         setOpen(true);
@@ -52,12 +45,17 @@ function TableProduct({ update }) {
     const xoaSP = async () => {
         await axios.delete(`https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/Product/${deleteProduct}`);
         handleClose();
-        getData();
+        handleUpdate();
     }
     // ham dong modal 
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleEdit = (row) =>{
+        handleOpen();
+        setProduct(row);
+    }
     return (
         <div className='p-5'>
             <TableContainer component={Paper}>
@@ -89,7 +87,7 @@ function TableProduct({ update }) {
                                 <StyledTableCell align="right">{row.categoryID}</StyledTableCell>
                                 <StyledTableCell align="right">{row.description}</StyledTableCell>
                                 <StyledTableCell align="right">
-                                    <button className="bg-blue-500 text-white px-3 py-1 rounded mr-2"><CiEdit /></button>
+                                    <button onClick={()=> handleEdit(row)} className="bg-blue-500 text-white px-3 py-1 rounded mr-2"><CiEdit /></button>
                                     <button onClick={() => handleClickOpen(row.id)} className="bg-red-600 px-3 text-white py-1 rounded"><RiDeleteBin6Fill /></button>
                                 </StyledTableCell>
                             </StyledTableRow>

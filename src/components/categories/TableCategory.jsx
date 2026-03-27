@@ -35,7 +35,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 function TableCategory({ setCategory, handleOpen }) {
     const [open, setOpen] = React.useState(false);
     const [delelteCategory, setdelelteCategory] = useState(null);
-    const { categories, handleUpdate } = useContext(CategoriesContext);
+    const { categories, handleUpdate} = useContext(CategoriesContext);
     // ham mo modal xoa => id 
     const handleClickOpen = (id) => {
         setdelelteCategory(id);

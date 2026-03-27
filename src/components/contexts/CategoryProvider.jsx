@@ -13,10 +13,10 @@ function CategoryProvider({ children }) {
         const reponse = await axios.get("https://69bcc9b32bc2a25b22ac5d1c.mockapi.io/categories");
         setCategories(reponse.data);
     }
-    const handleUpdate = () => setUpdate(!update) ;
+    const handleUpdate = () => setUpdate(!update);
     return (
-        <CategoriesContext.Provider value={{categories , setCategories , handleUpdate }}>
-              { children }
+        <CategoriesContext.Provider value={{ categories, setCategories, handleUpdate }}>
+            {children}
         </CategoriesContext.Provider>
     );
 }
