@@ -53,6 +53,7 @@ function Categories(props) {
             <Search handleOpen={handleOpen} type={"CATEGORIES"} name={"CATEGORY"} />
             <TableCategory handleOpen={handleOpen} setCategory={setCategory} />
             <ModalCategory error={error} addCategory={addCategory} onchangInput={onchangInput} category={category} open={open} handleClose={handleClose} />
+     
         </div>
     );
 }

@@ -12,6 +12,8 @@ import { CiEdit } from 'react-icons/ci';
 import { RiDeleteBin6Fill } from 'react-icons/ri';
 import Modal_Delete from '../header/Modal_Delete';
 import { ProductContext } from '../contexts/ProductProvider';
+import { CategoriesContext } from '../contexts/CategoryProvider';
+import BasicPagination from '../header/BasicPagination';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -33,10 +35,16 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     },
 }));
 
-function TableProduct({ setProduct, handleOpen }) {
+function TableProduct({ setProduct, handleOpen, search }) {
     const [open, setOpen] = React.useState(false);
     const [deleteProduct, setdelProduct] = useState(null);
-    const {products, handleUpdate} =useContext(ProductContext);
+    const { products, handleUpdate } = useContext(ProductContext);
+    const { categories } = useContext(CategoriesContext);
+    const ITEMS_PER_PAGE = 5;
+    const [page, setPage] = useState(1);
+    const start = (page-1) * ITEMS_PER_PAGE;
+    const currentData = products.filter((e)=> e?.name.toLowerCase().includes(search.toLowerCase()) ).slice(start, start + ITEMS_PER_PAGE);
+
 
     const handleClickOpen = (id) => {
         setdelProduct(id);
@@ -52,7 +60,7 @@ function TableProduct({ setProduct, handleOpen }) {
         setOpen(false);
     };
 
-    const handleEdit = (row) =>{
+    const handleEdit = (row) => {
         handleOpen();
         setProduct(row);
     }
@@ -72,7 +80,7 @@ function TableProduct({ setProduct, handleOpen }) {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {products.map((row, index) => (
+                        {currentData.map((row, index) => (
                             <StyledTableRow key={index}>
                                 <StyledTableCell component="th" scope="row">{index + 1}</StyledTableCell>
                                 <StyledTableCell align="right">{row.name}</StyledTableCell>
@@ -84,10 +92,10 @@ function TableProduct({ setProduct, handleOpen }) {
                                         alt="product"
                                     />
                                 </StyledTableCell>
-                                <StyledTableCell align="right">{row.categoryID}</StyledTableCell>
+                                <StyledTableCell align="right">{categories.find(e => e.id == row.categoryID)?.name}</StyledTableCell>
                                 <StyledTableCell align="right">{row.description}</StyledTableCell>
                                 <StyledTableCell align="right">
-                                    <button onClick={()=> handleEdit(row)} className="bg-blue-500 text-white px-3 py-1 rounded mr-2"><CiEdit /></button>
+                                    <button onClick={() => handleEdit(row)} className="bg-blue-500 text-white px-3 py-1 rounded mr-2"><CiEdit /></button>
                                     <button onClick={() => handleClickOpen(row.id)} className="bg-red-600 px-3 text-white py-1 rounded"><RiDeleteBin6Fill /></button>
                                 </StyledTableCell>
                             </StyledTableRow>
@@ -95,7 +103,8 @@ function TableProduct({ setProduct, handleOpen }) {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <Modal_Delete open={open} handleClose={handleClose} handleDeleted={xoaSP}/>
+            <Modal_Delete open={open} handleClose={handleClose} handleDeleted={xoaSP} />
+            <BasicPagination ITEMS_PER_PAGE={ITEMS_PER_PAGE} page={page} setPage={setPage} data={products} />
         </div>
     );
 }
